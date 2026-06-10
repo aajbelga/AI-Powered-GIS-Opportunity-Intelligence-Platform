@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_9ca2f03672b0bb1d988543e646be07ac {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_9ca2f03672b0bb1d988543e646be07ac" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_9ca2f03672b0bb1d988543e646be07ac = L.map(
+                "map_9ca2f03672b0bb1d988543e646be07ac",
+                {
+                    center: [22.5, 78.9],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 5,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_161af5adbb38c2ae81e4deb4231440c5 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_161af5adbb38c2ae81e4deb4231440c5.addTo(map_9ca2f03672b0bb1d988543e646be07ac);
+        
+    
+            var marker_5b6cd3da0fbbd09c553d54679d3b12b5 = L.marker(
+                [28.613895, 77.209006],
+                {
+}
+            ).addTo(map_9ca2f03672b0bb1d988543e646be07ac);
+        
+    
+        var popup_4003318b3c69427afe7170e97b68f0ff = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_e8d9a53ca7683cae3ed7eeae14a3d757 = $(`<div id="html_e8d9a53ca7683cae3ed7eeae14a3d757" style="width: 100.0%; height: 100.0%;">         <b>Delhi Metro Expansion Approved</b><br>         Location: Delhi<br>         Score: 90         </div>`)[0];
+                popup_4003318b3c69427afe7170e97b68f0ff.setContent(html_e8d9a53ca7683cae3ed7eeae14a3d757);
+            
+        
+
+        marker_5b6cd3da0fbbd09c553d54679d3b12b5.bindPopup(popup_4003318b3c69427afe7170e97b68f0ff)
+        ;
+
+        
+    
+    
+            marker_5b6cd3da0fbbd09c553d54679d3b12b5.bindTooltip(
+                `<div>
+                     Delhi Metro Expansion Approved
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_145fd64442fae54b47e4ee1cff4aae3b = L.marker(
+                [22.385005, 71.745261],
+                {
+}
+            ).addTo(map_9ca2f03672b0bb1d988543e646be07ac);
+        
+    
+        var popup_240f4c078a203acb799cf46e6fbf11a3 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_d04369717c883e11735268bf89274d2b = $(`<div id="html_d04369717c883e11735268bf89274d2b" style="width: 100.0%; height: 100.0%;">         <b>Solar Park Development in Gujarat</b><br>         Location: Gujarat<br>         Score: 85         </div>`)[0];
+                popup_240f4c078a203acb799cf46e6fbf11a3.setContent(html_d04369717c883e11735268bf89274d2b);
+            
+        
+
+        marker_145fd64442fae54b47e4ee1cff4aae3b.bindPopup(popup_240f4c078a203acb799cf46e6fbf11a3)
+        ;
+
+        
+    
+    
+            marker_145fd64442fae54b47e4ee1cff4aae3b.bindTooltip(
+                `<div>
+                     Solar Park Development in Gujarat
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_3fa806d716305e9c69637ae6d99098ab = L.marker(
+                [19.567032, 76.416456],
+                {
+}
+            ).addTo(map_9ca2f03672b0bb1d988543e646be07ac);
+        
+    
+        var popup_46c8c8f68102ed1c74ba08c736ac2239 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_6200e619830df8229e656bd36cbc7590 = $(`<div id="html_6200e619830df8229e656bd36cbc7590" style="width: 100.0%; height: 100.0%;">         <b>New Industrial Corridor in Maharashtra</b><br>         Location: Maharashtra<br>         Score: 80         </div>`)[0];
+                popup_46c8c8f68102ed1c74ba08c736ac2239.setContent(html_6200e619830df8229e656bd36cbc7590);
+            
+        
+
+        marker_3fa806d716305e9c69637ae6d99098ab.bindPopup(popup_46c8c8f68102ed1c74ba08c736ac2239)
+        ;
+
+        
+    
+    
+            marker_3fa806d716305e9c69637ae6d99098ab.bindTooltip(
+                `<div>
+                     New Industrial Corridor in Maharashtra
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_1dadf493bd6064afcd853e1d5d0b7bde = L.marker(
+                [26.8381, 80.9346],
+                {
+}
+            ).addTo(map_9ca2f03672b0bb1d988543e646be07ac);
+        
+    
+        var popup_9ad870fd4867a9d82db22cd0e088f848 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_77e4dd965459831300e2377efb96a285 = $(`<div id="html_77e4dd965459831300e2377efb96a285" style="width: 100.0%; height: 100.0%;">         <b>Smart City Project in Lucknow</b><br>         Location: Lucknow<br>         Score: 75         </div>`)[0];
+                popup_9ad870fd4867a9d82db22cd0e088f848.setContent(html_77e4dd965459831300e2377efb96a285);
+            
+        
+
+        marker_1dadf493bd6064afcd853e1d5d0b7bde.bindPopup(popup_9ad870fd4867a9d82db22cd0e088f848)
+        ;
+
+        
+    
+    
+            marker_1dadf493bd6064afcd853e1d5d0b7bde.bindTooltip(
+                `<div>
+                     Smart City Project in Lucknow
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_a8791f7c2bb1d4179deddbb05b4db819 = L.marker(
+                [14.956205, 75.789674],
+                {
+}
+            ).addTo(map_9ca2f03672b0bb1d988543e646be07ac);
+        
+    
+        var popup_09a6ed9573a560f0dd652fd9e79ef7eb = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_16b7eedb1fce0a80511dbfe05bc6452e = $(`<div id="html_16b7eedb1fce0a80511dbfe05bc6452e" style="width: 100.0%; height: 100.0%;">         <b>Highway Expansion in Karnataka</b><br>         Location: Karnataka<br>         Score: 70         </div>`)[0];
+                popup_09a6ed9573a560f0dd652fd9e79ef7eb.setContent(html_16b7eedb1fce0a80511dbfe05bc6452e);
+            
+        
+
+        marker_a8791f7c2bb1d4179deddbb05b4db819.bindPopup(popup_09a6ed9573a560f0dd652fd9e79ef7eb)
+        ;
+
+        
+    
+    
+            marker_a8791f7c2bb1d4179deddbb05b4db819.bindTooltip(
+                `<div>
+                     Highway Expansion in Karnataka
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+</script>
+</html>
