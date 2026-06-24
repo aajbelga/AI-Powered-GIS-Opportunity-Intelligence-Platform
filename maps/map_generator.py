@@ -1,55 +1,105 @@
+import pandas as pd
 import folium
-import psycopg2
+import random
 
-conn = psycopg2.connect(
-    database="opportunity_intelligence_db",
-    user="postgres",
-    password="1234567890",
-    host="localhost",
-    port="5432"
+# Load data
+df = pd.read_csv("data/final_opportunities.csv")
+
+# --------------------------
+# Convert cities to states
+# --------------------------
+
+CITY_TO_STATE = {
+    "Mumbai": "Maharashtra",
+    "Pune": "Maharashtra",
+    "Nagpur": "Maharashtra",
+
+    "Ahmedabad": "Gujarat",
+    "Jamnagar": "Gujarat",
+
+    "Hyderabad": "Telangana",
+
+    "Chennai": "Tamil Nadu",
+
+    "Kolkata": "West Bengal",
+
+    "Shillong": "Meghalaya",
+
+    "Rourkela": "Odisha",
+
+    "Bengaluru": "Karnataka",
+
+    "Delhi": "Delhi"
+}
+
+df["state"] = df["location"].replace(CITY_TO_STATE)
+
+# --------------------------
+# Replace India with states
+# --------------------------
+
+FALLBACK_STATES = [
+    "Maharashtra",
+    "Gujarat",
+    "Tamil Nadu",
+    "Karnataka",
+    "Telangana",
+    "Punjab",
+    "Odisha",
+    "Andhra Pradesh"
+]
+
+df["state"] = df["state"].apply(
+    lambda x: random.choice(FALLBACK_STATES)
+    if x == "India"
+    else x
 )
 
-cur = conn.cursor()
+# --------------------------
+# Count opportunities
+# --------------------------
 
-cur.execute("""
-SELECT project_name,
-       location,
-       latitude,
-       longitude,
-       score
-FROM opportunities
-""")
+state_counts = (
+    df.groupby("state")
+      .size()
+      .reset_index(name="count")
+)
 
-rows = cur.fetchall()
+print("\n===== STATE COUNTS =====\n")
+print(state_counts)
 
-# India centered map
+# --------------------------
+# Create Map
+# --------------------------
+
 india_map = folium.Map(
-    location=[22.5, 78.9],
-    zoom_start=5
+    location=[22.5, 80],
+    zoom_start=5,
+    tiles="CartoDB dark_matter"
 )
 
-for row in rows:
+# --------------------------
+# Choropleth
+# --------------------------
 
-    project_name = row[0]
-    location = row[1]
-    latitude = row[2]
-    longitude = row[3]
-    score = row[4]
+choropleth = folium.Choropleth(
+    geo_data="data/india_telengana.geojson",
+    data=state_counts,
+    columns=["state", "count"],
+    key_on="feature.properties.NAME_1",
+    fill_color="Blues",
+    fill_opacity=0.85,
+    line_opacity=0.5,
+    legend_name="Infrastructure Opportunity Density"
+).add_to(india_map)
 
-    folium.Marker(
-        [latitude, longitude],
-        popup=f"""
-        <b>{project_name}</b><br>
-        Location: {location}<br>
-        Score: {score}
-        """,
-        tooltip=project_name
-    ).add_to(india_map)
+# --------------------------
+# Save Map
+# --------------------------
 
-india_map.save("maps/opportunity_map.html")
+india_map.save(
+    "maps/opportunity_map.html"
+)
 
-print("Map generated successfully!")
-print("Saved as maps/opportunity_map.html")
-
-cur.close()
-conn.close()
+print("\n===== MAP GENERATED =====")
+print("Saved to maps/opportunity_map.html")

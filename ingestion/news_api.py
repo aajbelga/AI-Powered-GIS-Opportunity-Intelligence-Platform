@@ -1,46 +1,34 @@
-import requests
+import feedparser
 import pandas as pd
+from urllib.parse import quote
 
-API_KEY = "df5af46417ce4bb9b8ded893e2c2031c"
+query = "infrastructure projects india"
 
-query = '''
-("infrastructure project")
-OR ("metro project")
-OR ("highway project")
-OR ("railway project")
-OR ("solar park")
-OR ("industrial corridor")
-OR ("smart city")
-'''
+rss_url = (
+    f"https://news.google.com/rss/search?q={quote(query)}"
+)
 
-url = "https://newsapi.org/v2/everything"
+print("Fetching:", rss_url)
 
-params = {
-    "q": query,
-    "language": "en",
-    "sortBy": "publishedAt",
-    "pageSize": 50,
-    "apiKey": API_KEY
-}
+feed = feedparser.parse(rss_url)
 
-response = requests.get(url, params=params)
-
-data = response.json()
+print("Articles found:", len(feed.entries))
 
 articles = []
 
-for article in data.get("articles", []):
+for entry in feed.entries:
+
     articles.append({
-        "title": article["title"],
-        "source": article["source"]["name"],
-        "published": article["publishedAt"],
-        "description": article["description"]
+        "title": entry.title,
+        "link": entry.link
     })
 
 df = pd.DataFrame(articles)
 
+df.to_csv(
+    "data/live_news.csv",
+    index=False
+)
+
 print(df.head())
-
-df.to_csv("data/live_news.csv", index=False)
-
 print(f"\nCollected {len(df)} articles")

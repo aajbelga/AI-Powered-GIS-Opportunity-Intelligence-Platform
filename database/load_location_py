@@ -1,0 +1,52 @@
+import pandas as pd
+import psycopg2
+
+df = pd.read_csv("data/location_news.csv")
+
+conn = psycopg2.connect(
+    database="opportunity_intelligence_db",
+    user="postgres",
+    password="1234567890",
+    host="localhost",
+    port="5432"
+)
+
+cur = conn.cursor()
+
+# Clear previous opportunities
+cur.execute("TRUNCATE TABLE opportunities RESTART IDENTITY")
+
+# Count location frequency
+location_counts = df["location"].value_counts().to_dict()
+
+for _, row in df.iterrows():
+
+    location = row["location"]
+    project_name = row["article"]
+
+    frequency = location_counts[location]
+
+    # GIS Opportunity Score
+    score = min(50 + (frequency * 25), 100)
+
+    cur.execute("""
+    INSERT INTO opportunities
+    (
+        project_name,
+        location,
+        score
+    )
+    VALUES (%s,%s,%s)
+    """,
+    (
+        project_name,
+        location,
+        score
+    ))
+
+conn.commit()
+
+print("Locations and scores loaded successfully!")
+
+cur.close()
+conn.close()
